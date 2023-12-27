@@ -14,3 +14,8 @@ Here is how it works:
     2.  verify the timestamp in the message to make sure the message is not replayed.
 
 5. when the signature is verified, the server will print the message to the console.
+
+There are 2 valid operations in client.py:
+
+1. `action:send_msg`, the value should be the string you want to send to server.
+2. `action:chg_pwd`, the value should be the new_password you want to change to. The new password also will store in `password.txt` in client side.
