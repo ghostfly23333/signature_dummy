@@ -15,6 +15,7 @@ def init_account_dict():
         for line in f.readlines():
             username, password = line.split()
             account_dict[username] = password
+    print("account_dict: ")
     print(account_dict)
 
 # 导入公钥
@@ -38,11 +39,9 @@ def decrypt_data(encrypted_data, password):
         backend=default_backend()
     )
     key = kdf.derive(password.encode('utf-8'))
-    print("key: ", key)
 
     # 提取初始化向量
     iv = 16 * b'\x00'
-    print("iv: ", iv)
 
     # 使用密钥和初始化向量创建 AES 密钥
     cipher_key = key[:16]
@@ -134,7 +133,6 @@ def receive_data_from_client():
         with conn:
             print(f"Connected by {addr}")
             received_data = conn.recv(1024)
-            print("received_data: ", received_data)
             json_data_str = received_data.decode("utf-8")
             received_data_json = json.loads(json_data_str)
             username = received_data_json["username"]

@@ -58,12 +58,10 @@ def encrypt_data(data, password):
         backend=default_backend()
     )
     key = kdf.derive(password.encode('utf-8'))
-    print("key: ", key)
 
     # 使用密钥创建 AES 密钥
     cipher_key = key[:16]
     iv = 16 * b'\x00'
-    print("iv: ", iv)
     cipher = Cipher(algorithms.AES(cipher_key), mode=modes.CFB8(iv), backend=default_backend())
     
     # 使用 AES 密钥加密数据
